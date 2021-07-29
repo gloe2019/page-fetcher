@@ -11,7 +11,7 @@ const fetcher = (url, path) => {
     console.error("error msg: ", error);
     console.log("statusCode: ", response && response.statusCode);
     //console.log("body: ", body);
-    fs.writeFile(path, body, (err) => {
+    fs.writeFile(path, body, { flag: "wx" }, (err) => {
       if (err) {
         console.error(err);
         return;
