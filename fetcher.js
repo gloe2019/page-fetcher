@@ -10,6 +10,10 @@ const fetcher = (url, path) => {
   request(url, (error, response, body) => {
     console.error("error msg: ", error);
     console.log("statusCode: ", response && response.statusCode);
+    if (response.statusCode !== 200) {
+      console.log("Invalid status code, no file write occured");
+      return `${response && response.statusCode} Invalid status code`;
+    }
     //console.log("body: ", body);
     fs.writeFile(path, body, { flag: "wx" }, (err) => {
       if (err) {
